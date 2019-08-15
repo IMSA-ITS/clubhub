@@ -19,12 +19,12 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/1.9/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'YOUR SECRET KEY'
+SECRET_KEY = os.environ['CLUBHUB_SECRET_KEY']
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = os.environ['CLUBHUB_DEBUG']
 
-ALLOWED_HOSTS = ['YOUR DOMAIN HERE']
+ALLOWED_HOSTS = os.environ['CLUBHUB_ALLOWED_HOSTS'].split(',')
 
 # Application definition
 
@@ -78,7 +78,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'clubhubdb',
         'USER': 'clubhub',
-        'PASSWORD': 'YourDatabasePassword',
+        'PASSWORD': os.environ['CLUBHUB_DATABASE_PASSWORD'],
         'HOST': 'postgres',
         'PORT': '5432'
     }
@@ -116,7 +116,7 @@ USE_L10N = True
 USE_TZ = True
 
 # Change this to your time zone
-TIME_ZONE = 'UTC'
+TIME_ZONE = os.environ['CLUBHUB_TIMEZONE']
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
@@ -144,6 +144,6 @@ DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 EMAIL_BACKEND = 'main.emails.SendGridBackend'
 
 # Don't comment this out!! Just leave it blank if not used.
-SENDGRID_APIKEY = 'YOUR SENDGRID API KEY'
+SENDGRID_APIKEY = os.environ['CLUBHUB_SENDGRID_APIKEY']
 
-ADMINS = [('ADMIN NAME', 'admin@email.com')]
+ADMINS = [(os.environ['CLUBHUB_ADMIN_NAME'], os.environ['CLUBHUB_ADMIN_EMAIL'])]
