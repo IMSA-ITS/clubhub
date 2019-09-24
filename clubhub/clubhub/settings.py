@@ -11,6 +11,35 @@ https://docs.djangoproject.com/en/1.9/ref/settings/
 """
 
 import os
+import logging
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'file': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': '/var/tmp/debug.log',
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['file'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+        'django.template': {
+            'handlers': ['file'],
+            'level': 'INFO',
+            'propogate': True,
+        },
+    },
+}
+
+logging.config.dictConfig(LOGGING)
+logger = logging.getLogger('django')
+logger.debug("Hello from logger")
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -25,6 +54,9 @@ SECRET_KEY = os.environ['CLUBHUB_SECRET_KEY']
 DEBUG = os.environ['CLUBHUB_DEBUG']
 
 ALLOWED_HOSTS = os.environ['CLUBHUB_ALLOWED_HOSTS'].split(',')
+
+USE_X_FORWARDED_HOST = True
+
 
 # Application definition
 
@@ -131,19 +163,19 @@ MEDIA_ROOT = '/opt/media'
 MEDIA_URL = '/media/'
 
 # Club Hub Mailer
-EMAIL_HOST_USER = 'YOUR MAILER ADDRESS HERE'
+EMAIL_HOST_USER = 'fcy+clubhub@imsa.edu'
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 # Uncomment these and comment out EMAIL_BACKEND
 # and SENDGRID_APIKEY to enable SMTP mail
 # EMAIL_USE_TLS = True
-# EMAIL_HOST = 'YOUR MAIL SERVER'
-# EMAIL_PORT = 587
+EMAIL_HOST = 'mail.imsa.edu'
+EMAIL_PORT = 25
 # EMAIL_HOST_PASSWORD = 'YOUR MAIL PASSWORD'
 
 # Enable this to use SendGrid
-EMAIL_BACKEND = 'main.emails.SendGridBackend'
+#EMAIL_BACKEND = 'main.emails.SendGridBackend'
 
 # Don't comment this out!! Just leave it blank if not used.
-SENDGRID_APIKEY = os.environ['CLUBHUB_SENDGRID_APIKEY']
+#SENDGRID_APIKEY = os.environ['CLUBHUB_SENDGRID_APIKEY']
 
 ADMINS = [(os.environ['CLUBHUB_ADMIN_NAME'], os.environ['CLUBHUB_ADMIN_EMAIL'])]
