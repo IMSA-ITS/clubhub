@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/1.9/ref/settings/
 
 import os
 import logging
+import logging.config
 
 LOGGING = {
     'version': 1,
