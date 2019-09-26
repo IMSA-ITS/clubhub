@@ -11,8 +11,6 @@ https://docs.djangoproject.com/en/1.9/ref/settings/
 """
 
 import os
-import logging
-import logging.config
 
 LOGGING = {
     'version': 1,
@@ -27,7 +25,7 @@ LOGGING = {
     'loggers': {
         'django': {
             'handlers': ['file'],
-            'level': 'DEBUG',
+            'level': 'INFO',
             'propagate': True,
         },
         'django.template': {
@@ -38,9 +36,11 @@ LOGGING = {
     },
 }
 
-logging.config.dictConfig(LOGGING)
-logger = logging.getLogger('django')
-logger.debug("Hello from logger")
+# If logging needed in this file, enable the following block of lines.
+#import logging
+#import logging.config
+#logging.config.dictConfig(LOGGING)
+#logger = logging.getLogger('django')
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
