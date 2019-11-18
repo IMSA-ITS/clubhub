@@ -50,6 +50,7 @@
     {% for poster in posters %}
         <div id="event-{{ forloop.counter }}" class="event step" data-transition-duration="{{ poster.slide_duration }}">
             <a name="step-{{ forloop.counter }}"></a>
+	    <!--
             <div class="headerbar row">
                 <div class="title six columns">
                     <p>{{ forloop.counter }}. {{ poster.event_host }}</p>
@@ -58,6 +59,7 @@
                     <p align="right">{{ poster.event_start_datetime|date:"l, F j" }}</p>
                 </div>
             </div>
+	    -->
             {% if poster.display_fullscreen %}
                 <div class="eventbody fullposter" style="background-image: url('{{ poster.poster_file.url }}');"></div>
             {% else %}
