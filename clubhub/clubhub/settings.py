@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/1.9/ref/settings/
 
 import os
 
-LOGGING = {
+DISABLED_LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
     'handlers': {
