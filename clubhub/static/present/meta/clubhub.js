@@ -24,6 +24,15 @@ $(document).ready(function () {
         }, 'slow');
     }
 
+    function scrollToEvent(i) {
+	var e = $("#event-" + i);
+	if (e.length) {
+		$("html,body").animate({
+			scrollTop: e.offset().top
+		}, "slow");
+	}
+    }
+
     function triggerReload() {
         $.ajax({
             url: window.location.protocol + "//" + window.location.host + "/present/?rand=" + Math.floor((1 + Math.random()) * 0x10000),
@@ -84,7 +93,9 @@ $(document).ready(function () {
 
         //Uncomment these lines to enable display optimizations.
         $("#event-" + (counter.mod($(".step").length))).show();
-        scrollToAnchor("step-" + (counter.mod($(".step").length)));
+        //scrollToAnchor("step-" + (counter.mod($(".step").length)));
+        scrollToEvent(counter.mod($(".step").length));
+	
         setTimeout(function () {
             $("#event-" + ((counter - 1).mod($(".step").length))).hide();
             counter++;
