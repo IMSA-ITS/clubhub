@@ -97,7 +97,7 @@ $(document).ready(function () {
         scrollToEvent(counter.mod($(".step").length));
 	
         setTimeout(function () {
-            $("#event-" + ((counter - 1).mod($(".step").length))).hide();
+            //$("#event-" + ((counter - 1).mod($(".step").length))).hide();
             counter++;
         }, 1000);
 
